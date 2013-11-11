@@ -6,6 +6,10 @@ class SnippetsController < ApplicationController
     else
       @snippets = Snippet.all
     end
+    respond_to do |format|
+      format.html
+      format.json {render json: @snippets}
+    end
   end
 
   def show
