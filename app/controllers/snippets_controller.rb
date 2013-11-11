@@ -21,14 +21,19 @@ class SnippetsController < ApplicationController
   end
 
   def create
-    @snippet = Snippet.new(params["snippet"])
+    # @snippet = Snippet.new(params["snippet"])
+    # respond_to do |format|
+    #   if @snippet.save
+    #     format.html{redirect_to @snippet, notice: 'Snippet is successfully created'}
+    #     format.json{render json:@snippet, status: :created}
+    #   else
+    #     format.html{render action:"new"}
+    #     format.json{render json: @snippet.errors, status: :unprocessable_entity}
+    #   end
+    # end
     respond_to do |format|
-      if @snippet.save
-        format.html{redirect_to @snippet, notice: 'Snippet is successfully created'}
-        format.json{render json:@snippet, status: :created}
-      else
-        format.html{render action:"new"}
-        format.json{render json: @snippet.errors, status: :unprocessable_entity}
+      format.json do
+        render json: {success: "true"}
       end
     end
   end
@@ -56,5 +61,6 @@ class SnippetsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to snippets_path}
       format.json {render json: @snippet}
+    end
   end
 end
