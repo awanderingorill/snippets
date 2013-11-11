@@ -56,5 +56,6 @@ class SnippetsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to snippets_path}
       format.json {render json: @snippet}
+    end
   end
 end
