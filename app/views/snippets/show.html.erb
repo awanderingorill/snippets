@@ -1,7 +1,7 @@
 <h3><%= @snippet.created_at.strftime("%d %b. %Y") %></h3>
 
 <p><%= @snippet.body %></p>
-
+<p><strong>Notes</strong>: <%= @snippet.notes %><br></p>
 <strong>Source</strong>: <%= @snippet.source %><br>
 <strong>Tags</strong>: <%= @snippet.tag_list %>
 
