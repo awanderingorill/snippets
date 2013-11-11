@@ -1,0 +1,8 @@
+Hey, <%= @user.name.capitalize %>.
+
+<p>Here are your snippets:</p>
+<ul>
+  <% @user.snippets.each do |snippet| %>
+  <li><%= snippet.body %></li>
+  <% end %>
+</ul>

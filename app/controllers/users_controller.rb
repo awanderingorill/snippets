@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    user = User.find(session[:id])
-    @snippets = user.snippets
+    @user = User.find(params[:id])
   end
 
   def new
@@ -10,8 +9,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(params[:user])
-    redirect_to user
+    @user = User.new(params[:user])
+    respond_to do |format|
+      if @user.save
+        format.html{redirect_to @user, notice: 'Snippet is successfully created'}
+        format.json{render json:@user, status: :created}
+      else
+        #TODO flash error if password isn't longer than 6 characters
+        format.html{render action:"new"}
+        format.json{render json: @user.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def edit

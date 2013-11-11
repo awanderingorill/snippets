@@ -12,11 +12,11 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :country
+  attr_accessible :name, :email, :password, :password_confirmation, :country
   #no devise library yet.
   has_secure_password
   validates :email, :presence => false, :uniqueness => true
-  validates :password, :password_confirmation, :presence => true, :length => {in: 6..20}
+  validates :password, :password_confirmation, :presence => true
 
   #acts_as_tagger looks very useful but when I was testing it did not seem to yield anything.
   #@some_user.tag(@some_photo, :with => "politics") <-- not returning anything.
