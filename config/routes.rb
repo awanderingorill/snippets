@@ -1,4 +1,7 @@
 SnippetsApp::Application.routes.draw do
+  get "tags/:tag", to: 'snippets#index', as: :tag
+  resources :users
+  resources :snippets
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
