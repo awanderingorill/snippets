@@ -1,4 +1,5 @@
 class SnippetsController < ApplicationController
+
   def index
     if params[:tag]
       @snippets = Snippet.tagged_with(params[:tag])
