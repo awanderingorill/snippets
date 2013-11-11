@@ -8,12 +8,18 @@
 </head>
 <body>
 
-<nav align="right">
-  <% if session[:user_id] %>
-    <% @user = User.find(session[:user_id]) %>
-    logged in as <%= link_to(@user.name), "/users/#{@user.id}")  %> | <%= link_to('Log out', '/session/destroy') %>
+  <h1><%= link_to 'Snippets', '/snippets/new' %></h2>
 
-<%= yield %>
+  <nav align="right">
+    <% if session[:user_id] %>
+      <% @user = User.find(session[:user_id]) %>
+      logged in as <%= link_to(@user.email, "/users/#{@user.id}")  %> | <%= link_to('Log out', '/logout') %>
+    <% else %>
+      <%= link_to('Log in', '/login') %> | <%= link_to('Sign up', '/users/new') %>
+    <% end %>
+  </nav>
+
+  <%= yield %>
 
 </body>
 </html>

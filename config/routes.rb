@@ -5,7 +5,6 @@ SnippetsApp::Application.routes.draw do
   get '/logout' => 'session#destroy'
   get '/login' => 'session#new'
   post '/login' => 'session#create'
-  get '/logout' => 'session#destroy'
 
   resources :users
   resources :snippets

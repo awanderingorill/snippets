@@ -22,6 +22,7 @@ class SnippetsController < ApplicationController
 
   def create
     @snippet = Snippet.new(params["snippet"])
+    @snippet.user_id = session[:user_id]
     respond_to do |format|
       if @snippet.save
         format.html{redirect_to @snippet, notice: 'Snippet is successfully created'}
@@ -31,11 +32,6 @@ class SnippetsController < ApplicationController
         format.json{render json: @snippet.errors, status: :unprocessable_entity}
       end
     end
-    # respond_to do |format|
-    #   format.json do
-    #     render json: {success: "true"}
-    #   end
-    # end
   end
 
   def edit
