@@ -34,7 +34,7 @@ Snippet.addSnippets = function(e){
       url: "/snippets",
       dataType: "json",
       data: {snippet: newSnippet}
-    }).done(function(snippet){console.log(snippet.name)})
+    }).done(function(snippet){console.log(snippet.tag_list)})
 }
 
 
