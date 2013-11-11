@@ -7,12 +7,8 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 
-<<<<<<< HEAD
-#Gemfile
-=======
 gem 'acts-as-taggable-on', '~> 2.3.1'
 
->>>>>>> d9bd4fc9e80d759d31eda063d9f960e6bf304acf
 group :development, :test do
   gem 'pry-rails'           # Causes rails console to open pry
                             # https://github.com/rweng/pry-rails

@@ -1,0 +1,5 @@
+<h3><%= @snippet.created_at.strftime("%d %b. %Y") %></h3>
+<%= @snippet.body %><br>
+<strong>Source</strong>: <%= @snippet.source %>
+
+<p><%= link_to("edit", "/snippets/#{@snippet.id}/edit") %> | <%= link_to("delete", "/snippets/#{@snippet.id}", :method => :delete) %></p>

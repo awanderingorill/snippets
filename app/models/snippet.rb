@@ -12,7 +12,7 @@
 #
 
 class Snippet < ActiveRecord::Base
-  attr_accessible :body, :source, :user_id, :tag_list
+  attr_accessible :body, :source, :user_id, :tag_list, :notes
   #taglist stands for all the tags associated with the snippets["politics","history"]
   #@snippet.tag_list = "politics, history"
   belongs_to :user
