@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<nav align="right">
+  <% if session[:user_id] %>
+    <% @user = User.find(session[:user_id]) %>
+    logged in as <%= link_to(@user.name), "/users/#{@user.id}")  %> | <%= link_to('Log out', '/session/destroy') %>
+
 <%= yield %>
 
 </body>

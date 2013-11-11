@@ -24,13 +24,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.new
-    #TODO enable a user to edit their profile
+    #TODO make a form for a user to update their profile
   end
 
   def update
     user = User.find(session[:user_id])
     user.update_attributes(params[:user])
     redirect_to user
+    #TODO enable a user to update their profile
   end
 
   def destroy
