@@ -1,8 +1,31 @@
-<h2>Hey, <%= @user.name.capitalize %>.</h2>
+<div class="col-md-3">
 
-<p>Here are your snippets:</p>
-<ul>
+  <h2>tags</h2>
+  <div class="tags">
+    <ul>
+      <li>tag</li>
+      <li>tag</li>
+      <li>tag</li>
+      <li>tag</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="col-md-9">
+
+  <h2>snippets</h2>
   <% @user.snippets.each do |snippet| %>
-  <li><%= snippet.body %></li>
+  <div class="snippet">
+    <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
+    <p><%= snippet.body %></p>
+    <div class="snippet-links"><%= link_to snippet.source, snippet.source %></div>
+    <div class="snippet-notes">
+      <h3>Notes:</h3>
+      <%= snippet.notes %>
+    </div>
+  </div>
   <% end %>
-</ul>
+
+</div>
+

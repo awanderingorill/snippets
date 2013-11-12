@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @snippets = @user.snippets
+    respond_to do |format|
+      format.html
+      format.json{render json: @snippets}
+    end
   end
 
   def new
