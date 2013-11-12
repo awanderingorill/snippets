@@ -42,6 +42,14 @@ a:hover{
   color: #FFCC2F;
 }
 
+.snippet-links {
+  width: 50%;
+}
+
+.see-more-button {
+  width: 50%;
+}
+
 .snippet {
   font-family: 'Buenard';
   font-size: 16pt;
