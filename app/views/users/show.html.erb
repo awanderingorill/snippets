@@ -20,8 +20,8 @@
     <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
     <p><%= snippet.body %></p>
     <div class="snippet-links"><%= link_to snippet.source, snippet.source %></div>
-    <div class="see-more-button" align="right">
-      <button class="btn btn-secondary" id="see-more">...</button>
+    <div class="button-div" align="right">
+      <button class="see-more-button btn btn-secondary" id="button-<%=snippet.id%>">...</button>
     </div>
     <div class="snippet-notes">
       <h3>Notes:</h3>

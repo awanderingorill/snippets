@@ -46,8 +46,8 @@ a:hover{
   width: 50%;
 }
 
-.see-more-button {
-  width: 50%;
+.snippet-notes{
+  display: none;
 }
 
 .snippet {
