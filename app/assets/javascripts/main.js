@@ -4,19 +4,11 @@ console.log("Im ready");
 
 $(document).ready(function(){
   //on document load, the .each will apply a click event listner allowing for toggle slide for notes div
-  $('.see-more-button').on("click", function(e){
-    console.log(e.target);
-    var buttonId = e.target.id;
-    var content = $(this).closest('.snippet').children().last();
-      $("#" + buttonId + "").on("click", function(e) {
-        e.preventDefault();
-      $(content).slideToggle(200);
-    });
+  $('.see-more-button').on("click", function(){
+    $(this).closest('.snippet').find('.snippet-notes').slideToggle(200);
+  });
 
-  })
-
-
-})
+});
 
 // //function that is called on event listener for creating a student
 // function studentCreator(e) {
