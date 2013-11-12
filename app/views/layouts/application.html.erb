@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SnippetsApp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title>SNIPPETS</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 </head>
 <body>
+  <div class="wrapper">
+    <div class="row">
 
-  <h1><%= link_to 'Snippets', '/snippets/new' %></h2>
+      <div class="col-md-6">
+        <h1><%= link_to 'arturo', '/snippets/new' %></h1>
+      </div>
 
-  <nav align="right">
-    <% if session[:user_id] %>
-      <% @user = User.find(session[:user_id]) %>
-      logged in as <%= link_to(@user.email, "/users/#{@user.id}")  %> | <%= link_to('Log out', '/logout') %>
-    <% else %>
-      <%= link_to('Log in', '/login') %> | <%= link_to('Sign up', '/users/new') %>
-    <% end %>
-  </nav>
-
-  <%= yield %>
+      <div class="col-md-6">
+        <nav align="right">
+          <% if session[:user_id] %>
+          <% @user = User.find(session[:user_id]) %>
+          logged in as <%= link_to(@user.email, "/users/#{@user.id}")  %> | <%= link_to('Log out', '/logout') %>
+          <% else %>
+          <%= link_to('Log in', '/login') %> | <%= link_to('Sign up', '/users/new') %>
+          <% end %>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>
