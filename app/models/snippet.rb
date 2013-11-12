@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  body       :text
 #  source     :text
+#  notes      :text
 #  user_id    :integer
 #  tag_list   :string(255)
 #  created_at :datetime         not null
