@@ -8,8 +8,13 @@ class SessionController < ApplicationController
     password = params[:password]
     user = User.where(email: email).first
     if user && user.authenticate(password)
-      session[:user_id] = user.id
-      redirect_to user
+      respond_to do |format|
+        format.html do
+          session[:user_id] = user.id
+          redirect_to user
+        end
+        format.json { render json: user.id }
+      end
     else
       #TODO raise an error if something goes wrong in the authentication process
       format.html{render action:"new"}
