@@ -8,15 +8,31 @@ $(document).ready(function(){
   $('.see-more-button').on("click", function(){
     //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
     $(this).closest('.snippet').find('.snippet-notes').slideToggle(200);
+
   });
+
+// resizeIt = function(input) {
+//     var str = $(input).value;
+//     var cols = $(input).cols;
+
+//     var linecount = 0;
+//     $A(str.split("\n")).each( function(l) {
+//       linecount += Math.ceil( l.length / cols ); // take into account long lines
+//     } )
+//     $(input).rows = linecount + 1;
+//   };
+
+// function resizeTextArea (input) {
+//   input.height(input.scrollHeight);
+// }
 
 
 $(".edit-button").on("click", function(){
   var $snippetBody = $(this).closest('.snippet').find('.snippet-body');
-  $snippetBody.replaceWith($('<input type="textarea"></input>').attr("value", $snippetBody.html()));
-
-
-})
+  $snippetBody.replaceWith($('<textarea>' + $snippetBody.html() + '</textarea>'));
+  var $snippetNotes = $(this).closest('.snippet').find('.snippet-notes');
+  $snippetNaotes.replaceWith($('<textarea>' + $snippetNotes.html() + '</textarea>'));
+});
 
 
 });

@@ -9,6 +9,22 @@
     font-style: normal;
 }
 
+textarea {
+    width: 100%;
+}
+
+.edit-button{
+  cursor: pointer;
+}
+
+.delete-button{
+  cursor: pointer;
+}
+
+.see-more-button{
+  cursor: pointer;
+}
+
 .brand-name {
   font-family: 'Rockwell', serif;
   font-size: 3em;
@@ -18,7 +34,7 @@
 
 .wrapper {
   color: #332118;
-  width: 90%;
+  width: 80%;
   max-width: 1180px;
   margin: 25px auto;
 }
@@ -35,7 +51,6 @@ h2 {
   letter-spacing: .1em;
   padding: 3px;
   margin-bottom: 3%;
-  border-bottom: 2px solid #E5E5E5;
   font-size: .9em;
 }
 
@@ -58,7 +73,7 @@ a {
 
 a:hover{
   text-decoration: none;
-  color: #00ACEE;
+  color: red;
 }
 
 .snippet-links {
@@ -71,9 +86,9 @@ a:hover{
 
 .snippet {
   font-family: 'Buenard';
-  font-size: 16pt;
-  background-color: #E5E5E5;
   padding: 2%;
+  font-size: 16pt;
+  padding: 0%;
   margin-top: 20px;
 }
 
