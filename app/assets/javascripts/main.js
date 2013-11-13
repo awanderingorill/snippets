@@ -3,10 +3,21 @@ console.log("Im ready");
 // event listener added to edit button/link that will render an edit view for the snippet
 
 $(document).ready(function(){
-  //on document load, the .each will apply a click event listner allowing for toggle slide for notes div
+
+  //takes all buttons with class "seemorebuttons" and adds event listener "click"
   $('.see-more-button').on("click", function(){
+    //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
     $(this).closest('.snippet').find('.snippet-notes').slideToggle(200);
   });
+
+
+$(".edit-button").on("click", function(){
+  var $snippetBody = $(this).closest('.snippet').find('.snippet-body');
+  $snippetBody.replaceWith($("<input></input>").attr("value", $snippetBody.html()));
+
+
+})
+
 
 });
 
