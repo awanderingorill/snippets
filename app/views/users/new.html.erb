@@ -1,5 +1,6 @@
-<h2>Sign Up</h2>
-<%= form_for @user do |f| %>
+<div class="col-md-12">
+  <h2>Sign Up</h2>
+  <%= form_for @user do |f| %>
   <%= label_tag :name %>
   <%= f.text_field :name %><br>
   <%= label_tag :email %>
@@ -9,4 +10,5 @@
   <%= label_tag :password_confirmation %>
   <%= f.password_field :password_confirmation %><br>
   <%= f.submit "Sign Up" %>
-<% end %>
+  <% end %>
+</div>
