@@ -1,16 +1,42 @@
 @font-face {
-    font-family: 'museo_slab500';
-    src: url('museo_slab_500-webfont.eot');
-    src: url('museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
-         url('museo_slab_500-webfont.woff') format('woff'),
-         url('museo_slab_500-webfont.ttf') format('truetype'),
-         url('museo_slab_500-webfont.svg#museo_slab500') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'museo_slab500';
+  src: url('museo_slab_500-webfont.eot');
+  src: url('museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
+  url('museo_slab_500-webfont.woff') format('woff'),
+  url('museo_slab_500-webfont.ttf') format('truetype'),
+  url('museo_slab_500-webfont.svg#museo_slab500') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url('proximanova-light-webfont.eot');
+  src: url('proximanova-light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('proximanova-light-webfont.woff') format('woff'),
+  url('proximanova-light-webfont.ttf') format('truetype'),
+  url('proximanova-light-webfont.svg#proxima_novalight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+body {
+  font-family: 'Montserrat';
 }
 
 textarea {
-    width: 100%;
+  width: 100%;
+}
+
+.intro-title{
+  padding-top: 10%;
+  font-size: 3.5em;
+}
+
+.intro-text {
+  font-size: 1.7em;
+  margin: 0;
 }
 
 .edit-button{
@@ -29,7 +55,8 @@ textarea {
   font-family: 'Rockwell', serif;
   font-size: 3em;
   font-weight: 500;
-  padding-bottom: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .wrapper {
@@ -60,20 +87,13 @@ ul {
   margin: 0px;
 }
 
-h3 {
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  font-size: .6em;
-  margin: 0;
-}
-
 a {
   color: #543729;
 }
 
 a:hover{
   text-decoration: none;
-  color: red;
+  color: #aa6546;
 }
 
 .snippet-links {
