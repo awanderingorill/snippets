@@ -26,7 +26,11 @@ class SnippetsController < ApplicationController
 
   def create
     @snippet = Snippet.new(params["snippet"])
-    @snippet.user_id = session[:user_id]
+    binding.pry
+    if session[:user_id]
+      @snippet.user_id = session[:user_id]
+    end
+
     respond_to do |format|
       if @snippet.save
         format.html{redirect_to @snippet, notice: 'Snippet is successfully created'}
