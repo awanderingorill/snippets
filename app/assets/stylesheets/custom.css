@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'museo_slab500';
-    src: url('../fonts/museo_slab_500-webfont.eot');
-    src: url('../fonts/museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/museo_slab_500-webfont.woff') format('woff'),
-         url('../fonts/museo_slab_500-webfont.ttf') format('truetype'),
-         url('../fonts/museo_slab_500-webfont.svg#museo_slab500') format('svg');
+    src: url('museo_slab_500-webfont.eot');
+    src: url('museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('museo_slab_500-webfont.woff') format('woff'),
+         url('museo_slab_500-webfont.ttf') format('truetype'),
+         url('museo_slab_500-webfont.svg#museo_slab500') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 .brand-name {
-  font-family: 'museo_slab500', serif;
+  font-family: 'Rockwell', serif;
   font-size: 3em;
   font-weight: 500;
   padding-bottom: 20px;

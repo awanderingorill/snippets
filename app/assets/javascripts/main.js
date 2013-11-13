@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 $(".edit-button").on("click", function(){
   var $snippetBody = $(this).closest('.snippet').find('.snippet-body');
-  $snippetBody.replaceWith($("<input></input>").attr("value", $snippetBody.html()));
+  $snippetBody.replaceWith($('<input type="textarea"></input>').attr("value", $snippetBody.html()));
 
 
 })
