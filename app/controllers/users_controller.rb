@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @snippets = @user.snippets
+    if params[:tag]
+      @snippets = @user.snippets.tagged_with(params[:tag])
+    else
+      @snippets = @user.snippets
+    end
     respond_to do |format|
       format.html
       format.json{render json: @snippets}
