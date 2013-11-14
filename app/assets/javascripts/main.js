@@ -10,12 +10,43 @@ $(document).ready(function(){
     $(this).closest('.snippet').find('.snippet-notes').slideToggle(200);
   });
 
-    $(".edit-button").on("click", function(){
+  $(".edit-button").on("click", function(e){
+      //establishes target on the event listener to the closest element with class of snippet
+      var $target = $(e.target).closest('.snippet');
+      //captures the id attribute of the target
+      var snippet_id = $target.attr('id');
+      //finds the body/text of the snippet
       var $snippetBody = $(this).closest('.snippet').find('.snippet-body');
-      $snippetBody.replaceWith($('<textarea>' + $snippetBody.html() + '</textarea>'));
-      var $snippetNotes = $(this).closest('.snippet').find('.snippet-notes');
-      $snippetNaotes.replaceWith($('<textarea>' + $snippetNotes.html() + '</textarea>'));
+      //changes the notes and snippt paragraphs to editable text area
+      $snippetBody.replaceWith($('<textarea>' + $snippetBody.html() + '</textarea>').attr("id", "body-"+snippet_id));
+      //grabs the snippet-notes element and sets it to a variable
+      var $snippetNotes = $(this).closest('.snippet').find('.snippet-notes-text');
+      //change the snippets notes to a text area
+      $snippetNotes.replaceWith($('<textarea>' + $snippetNotes.html() + '</textarea>').attr("id", "notes-"+snippet_id));
+      //apends the button to the snippet div
+      $(this).closest('.snippet').append($("<button class ='btn btn-secondary edit-snippet-button'>").html("Submit Edits"));
+
   });
+
+    $(".snippet").on("click", ".edit-snippet-button", function(e){
+      e.preventDefault();
+      //establishes target on the event listener to the closest element with class of snippet
+      var $target = $(e.target).closest('.snippet');
+      var snippet_id = $target.attr('id');
+      var editedSnippet = $("#body-"+snippet_id).val();
+      var editedNotes = $("#notes-"+snippet_id).val();
+      debugger
+      var snippetUpdate = {snippet: {notes: editedNotes, body: editedSnippet}}
+      $.ajax({
+      type: "PUT",
+      url: "/snippets/"+ snippet_id,
+      data: snippetUpdate,
+      dataType: "json"
+      }).done(function(response){
+        console.log(response);
+      });
+    });
+
 
     $(".delete-button").on("click", function(e){
       e.preventDefault();

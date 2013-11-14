@@ -18,12 +18,14 @@
   <% @user.snippets.each do |snippet| %>
   <div class="snippet" id = "<%=snippet.id%>">
     <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
-    <p class="snippet-body"><%= snippet.body %></p>
+    <p class="snippet-body" id = "body-<%=snippet.id%>"><%= snippet.body %></p>
     <div class="snippet-source">
       <%= link_to snippet.source, snippet.source %></div>
       <div class="snippet-notes">
         <h3>Notes:</h3>
-        <p><%= snippet.notes %></p>
+        <div class = "snippet-notes-text" id = "notes-<%=snippet.id%>">
+        <%= snippet.notes %>
+      </div>
       </div>
       <div class="button-div" align="right">
         <i class="fa fa-pencil-square-o edit-button"></i>
