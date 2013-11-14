@@ -1,20 +1,20 @@
-<div class="row">
+<div class="row labels">
 
   <div class="col-md-3">
     <h2>tags</h2>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <h2>snippets</h2>
   </div>
 
-  <div class="col-md-6" align="right">
-    <i class="fa fa-plus-square-o" style="font-size: 14pt;"></i>
+  <div class="col-md-5" align="right">
+    <a href="/snippets/new"><i class="fa fa-plus-square-o" style="font-size: 14pt; color: #A2A2A2"></i></a>
   </div>
 
 </div>
 
-<div class="row">
+<div class="row snippets">
   <div class="col-md-3">
     <ul>
       <% @user.snippets.each do |snippet| %>
@@ -25,29 +25,32 @@
     </ul>
   </div>
 
-  <% @snippets.each do |snippet| %>
-  <div class="col-md-3">
-    <div class="snippet" id = "<%=snippet.id%>">
-      <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
-      <p class="snippet-body"><%= snippet.body %></p>
-      <div class="snippet-source">
-        <%= link_to snippet.source, snippet.source %>
-      </div>
-      <div class="snippet-tags">
-        <%= snippet.tag_list %>
-      </div>
-      <div class="snippet-notes">
-        <h3>Notes:</h3>
-        <p><%= snippet.notes %></p>
-      </div>
-      <div class="button-div" align="right">
-        <i class="fa fa-pencil-square-o edit-button"></i>
-        <i class="fa fa-trash-o delete-button"></i>
-        <i class="fa fa-ellipsis-h see-more-button" id="button-<%=snippet.id%>"></i>
+  <div class="col-md-9">
+
+    <% @snippets.each do |snippet| %>
+    <div class="col-md-4">
+      <div class="snippet" id = "<%=snippet.id%>">
+        <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
+        <p class="snippet-body"><%= truncate(snippet.body, length: 200) %></p>
+        <div class="snippet-source">
+          <%= link_to "Source",  snippet.source %>
+        </div>
+        <div class="snippet-tags">
+          <%= snippet.tag_list %>
+        </div>
+        <div class="snippet-notes">
+          <h3>Notes:</h3>
+          <p><%= snippet.notes %></p>
+        </div>
+        <div class="button-div" align="right">
+          <i class="fa fa-pencil-square-o edit-button"></i>
+          <i class="fa fa-trash-o delete-button"></i>
+          <i class="fa fa-ellipsis-h see-more-button" id="button-<%=snippet.id%>"></i>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 
 </div>
 

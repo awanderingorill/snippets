@@ -7,7 +7,7 @@ $(document).ready(function(){
   //takes all buttons with class "seemorebuttons" and adds event listener "click"
   $('.see-more-button').on("click", function(){
     //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
-    $(this).closest('.snippet').find('.snippet-notes').slideToggle(200);
+    $(this).closest('.snippet').find('.snippet-notes').slideToggle('fast');
   });
 
     $(".edit-button").on("click", function(){
