@@ -23,6 +23,10 @@ $(document).ready(function(){
         dataType: "json"
       }).done(function(response){
         console.log(response);
+// where the response appends to the body of the site.
+
+
+
       });
 
   });
@@ -62,8 +66,17 @@ $(document).ready(function(){
 
       });
 
-  $(".snippet").on("click", ".edit-snippet-button", function(e){
-    e.preventDefault();
+$('#snippets-container').isotope({
+  itemSelector: '.snippet',
+  masonry: {
+    gutterWidth: 10,
+    columnWidth: 270,
+    rowHeight: 360
+  }});
+
+
+$(".snippet").on("click", ".edit-snippet-button", function(e){
+  e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
       $target = $(e.target).closest('.snippet');
       snippet_id = $target.attr('id');
@@ -96,6 +109,5 @@ $(document).ready(function(){
       $("#"+snippet_id).remove();
     })
   });
-
 
 });

@@ -83,13 +83,16 @@ h2 {
 }
 
 h3 {
-
+  font-family: 'Montserrat';
+  font-size: 1em;
+  margin: 0;
+  padding-bottom: 3%;
 }
 
 ul {
   list-style-type: none;
   padding: 0px;
-  margin: 0px;
+  margin: 2%;
 }
 
 a {
@@ -110,15 +113,14 @@ a:hover{
 }
 
 .snippet {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #332118;
   background-color: #FFFFFF;
-/*  min-height: 300px;
-  max-height: 300px;*/
+  width: 250px;
   overflow: hidden;
-  font-family: 'Buenard';
-  font-size: .9em;
-  padding: 10%;
-  margin-top: 20px;
+  font-family: 'proxima_novalight';
+  font-size: 1em;
+  padding: 2%;
+  margin: 10px 20px 10px 0;
 }
 
 .tags {
