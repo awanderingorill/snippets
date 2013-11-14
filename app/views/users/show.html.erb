@@ -3,10 +3,11 @@
   <h2>tags</h2>
   <div class="tags">
     <ul>
-      <li>tag</li>
-      <li>tag</li>
-      <li>tag</li>
-      <li>tag</li>
+      <% @user.snippets.each do |snippet| %>
+        <% snippet.tags.each do |tag| %>
+        <li><a href="/users/<%= @user.id %>/tags/<%= tag.name %>"><%= tag.name %></a></li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 
@@ -15,7 +16,7 @@
 <div class="col-md-10">
 
   <h2>snippets</h2>
-  <% @user.snippets.each do |snippet| %>
+  <% @snippets.each do |snippet| %>
   <div class="snippet" id = "<%=snippet.id%>">
     <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
     <p class="snippet-body" id = "body-<%=snippet.id%>"><%= snippet.body %></p>

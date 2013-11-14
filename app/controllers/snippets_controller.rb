@@ -2,7 +2,8 @@ class SnippetsController < ApplicationController
 
   def index
     if params[:tag]
-      @snippets = Snippet.tagged_with(params[:tag])
+      user = User.find(session[:user_id])
+      @snippets = user.snippets.tagged_with(params[:tag])
     else
       @snippets = Snippet.all
     end

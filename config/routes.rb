@@ -8,6 +8,9 @@ SnippetsApp::Application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
 
+  # the route to show only a user's snippets with that tag
+  get '/users/:id/tags/:tag' => 'users#show', :as => :user_tag
+
   resources :users
   resources :snippets
 end
