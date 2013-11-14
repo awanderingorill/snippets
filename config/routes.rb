@@ -1,4 +1,6 @@
 SnippetsApp::Application.routes.draw do
+
+  get '/' => 'welcome#index'
   get "tags/:tag", to: 'snippets#index', as: :tag
 
   # these are the routes for sessions

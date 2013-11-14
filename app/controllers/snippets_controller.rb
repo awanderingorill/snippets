@@ -28,6 +28,10 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.new(params["snippet"])
     @snippet.user_id = session[:user_id]
     @user = User.find(session[:user_id])
+    if session[:user_id]
+      @snippet.user_id = session[:user_id]
+    end
+
     respond_to do |format|
       if @snippet.save
         format.html{redirect_to @user, notice: 'Snippet is successfully created'}

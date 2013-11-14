@@ -25,7 +25,7 @@
           <% @user = User.find(session[:user_id]) %>
           logged in as <%= link_to(@user.email, "/users/#{@user.id}")  %> | <%= link_to('Log out', '/logout') %>
           <% else %>
-          <%= link_to('Log in', '/login') %> | <%= link_to('Sign up', '/users/new') %>
+          <%= link_to('Join Snippets', '/users/new') %> | <%= link_to('Login', '/login') %>
           <% end %>
         </nav>
       </div>
