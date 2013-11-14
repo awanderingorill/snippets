@@ -4,9 +4,9 @@
   <div class="tags">
     <ul>
       <% @user.snippets.each do |snippet| %>
-        <% snippet.tags.each do |tag| %>
-        <li><a href="/users/<%= @user.id %>/tags/<%= tag.name %>"><%= tag.name %></a></li>
-        <% end %>
+      <% snippet.tags.each do |tag| %>
+      <li><a href="/users/<%= @user.id %>/tags/<%= tag.name %>"><%= tag.name %></a></li>
+      <% end %>
       <% end %>
     </ul>
   </div>
@@ -15,24 +15,33 @@
 
 <div class="col-md-10">
 
-  <h2>snippets</h2>
+  <div class="labels">
+  <h2 display="inline-block">snippets</h2>
+  <div align="right">
+    <i class="fa fa-plus-square-o" style="font-size: 14pt;"></i>
+  </div>
+</div>
   <% @snippets.each do |snippet| %>
   <div class="snippet" id = "<%=snippet.id%>">
     <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
     <p class="snippet-body"><%= snippet.body %></p>
     <div class="snippet-source">
-      <%= link_to snippet.source, snippet.source %></div>
-      <div class="snippet-notes">
-        <h3>Notes:</h3>
-        <p><%= snippet.notes %></p>
-      </div>
-      <div class="button-div" align="right">
-        <i class="fa fa-pencil-square-o edit-button"></i>
-        <i class="fa fa-trash-o delete-button"></i>
-        <i class="fa fa-ellipsis-h see-more-button" id="button-<%=snippet.id%>"></i>
-      </div>
+      <%= link_to snippet.source, snippet.source %>
     </div>
-    <% end %>
-
+    <div class="snippet-tags">
+      <%= snippet.tag_list %>
+    </div>
+    <div class="snippet-notes">
+      <h3>Notes:</h3>
+      <p><%= snippet.notes %></p>
+    </div>
+    <div class="button-div" align="right">
+      <i class="fa fa-pencil-square-o edit-button"></i>
+      <i class="fa fa-trash-o delete-button"></i>
+      <i class="fa fa-ellipsis-h see-more-button" id="button-<%=snippet.id%>"></i>
+    </div>
   </div>
+  <% end %>
+
+</div>
 
