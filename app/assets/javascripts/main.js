@@ -9,7 +9,7 @@ $(document).ready(function(){
   //takes all buttons with class "seemorebuttons" and adds event listener "click"
   $('.see-more-button').on("click", function(){
     //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
-    $(this).closest('.snippet').find('.snippet-notes').slideToggle(200);
+    $(this).closest('.snippet').find('.snippet-notes').slideToggle('fast');
   });
 
   $(".edit-button").on("click", function(e){
@@ -33,7 +33,6 @@ $(document).ready(function(){
         {
         var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
         var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
-        debugger
         $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
         $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
         $(".edit-snippet-button").remove();

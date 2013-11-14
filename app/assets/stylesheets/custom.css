@@ -23,6 +23,7 @@
 
 body {
   font-family: 'Montserrat';
+  background-color: #F1F1F1;
 }
 
 textarea {
@@ -81,6 +82,10 @@ h2 {
   font-size: .9em;
 }
 
+h3 {
+
+}
+
 ul {
   list-style-type: none;
   padding: 0px;
@@ -105,10 +110,14 @@ a:hover{
 }
 
 .snippet {
+  border-bottom: 1px solid #000000;
+  background-color: #FFFFFF;
+/*  min-height: 300px;
+  max-height: 300px;*/
+  overflow: hidden;
   font-family: 'Buenard';
-  padding: 2%;
-  font-size: 16pt;
-  padding: 0%;
+  font-size: .9em;
+  padding: 10%;
   margin-top: 20px;
 }
 
