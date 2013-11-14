@@ -1,27 +1,41 @@
-<div class="col-md-2">
+<div class="row">
 
-  <h2>tags</h2>
-  <div class="tags">
-    <ul>
-      <% @user.snippets.each do |snippet| %>
-        <% snippet.tags.each do |tag| %>
-        <li><a href="/users/<%= @user.id %>/tags/<%= tag.name %>"><%= tag.name %></a></li>
-        <% end %>
-      <% end %>
-    </ul>
+  <div class="col-md-3">
+    <h2>tags</h2>
+  </div>
+
+  <div class="col-md-6">
+    <h2>snippets</h2>
+  </div>
+
+  <div class="col-md-6" align="right">
+    <i class="fa fa-plus-square-o" style="font-size: 14pt;"></i>
   </div>
 
 </div>
 
-<div class="col-md-10">
+<div class="row">
+  <div class="col-md-3">
+    <ul>
+      <% @user.snippets.each do |snippet| %>
+      <% snippet.tags.each do |tag| %>
+      <li><a href="/users/<%= @user.id %>/tags/<%= tag.name %>"><%= tag.name %></a></li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
 
-  <h2>snippets</h2>
   <% @snippets.each do |snippet| %>
-  <div class="snippet" id = "<%=snippet.id%>">
-    <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
-    <p class="snippet-body"><%= snippet.body %></p>
-    <div class="snippet-source">
-      <%= link_to snippet.source, snippet.source %></div>
+  <div class="col-md-3">
+    <div class="snippet" id = "<%=snippet.id%>">
+      <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
+      <p class="snippet-body"><%= snippet.body %></p>
+      <div class="snippet-source">
+        <%= link_to snippet.source, snippet.source %>
+      </div>
+      <div class="snippet-tags">
+        <%= snippet.tag_list %>
+      </div>
       <div class="snippet-notes">
         <h3>Notes:</h3>
         <p><%= snippet.notes %></p>
@@ -32,7 +46,8 @@
         <i class="fa fa-ellipsis-h see-more-button" id="button-<%=snippet.id%>"></i>
       </div>
     </div>
-    <% end %>
-
   </div>
+  <% end %>
+
+</div>
 
