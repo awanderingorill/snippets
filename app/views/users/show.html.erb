@@ -61,7 +61,7 @@
       <% @snippets.reverse.each do |snippet| %>
         <div class="snippet" id="<%=snippet.id%>">
           <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
-          <p class="snippet-body" id="body-<%=snippet.id%>"><%= truncate(snippet.body, length: 200) %></p>
+          <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
           <div class="snippet-source">
             <%= link_to snippet.source %>
           </div>

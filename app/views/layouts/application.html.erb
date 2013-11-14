@@ -14,7 +14,7 @@
     <div class="row">
 
       <div class="col-md-6">
-        <section class="brand-name"><%= link_to 'index', '/snippets/new' %></section>
+        <section class="brand-name"><%= link_to 'index', "/users/#{session[:user_id]}" %></section>
       </div>
 
       <div class="col-md-6">

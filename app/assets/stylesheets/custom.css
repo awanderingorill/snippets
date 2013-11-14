@@ -112,6 +112,17 @@ a:hover{
   display: none;
 }
 
+.snippet:hover{
+  color: #aa6546;
+  cursor: pointer;
+  border-bottom: 1px solid #aa6546;
+}
+
+.snippet:hover a{
+  color: #aa6546;
+  pointer-events: none;
+}
+
 .snippet {
   border-bottom: 1px solid #332118;
   background-color: #FFFFFF;
