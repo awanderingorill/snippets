@@ -1,14 +1,14 @@
 <div class="col-md-12">
   <h2>Sign Up</h2>
   <%= form_for @user do |f| %>
-  <%= label_tag :name %>
-  <%= f.text_field :name %><br>
-  <%= label_tag :email %>
-  <%= f.text_field :email %><br>
-  <%= label_tag :password %>
-  <%= f.password_field :password %><br>
-  <%= label_tag :password_confirmation %>
-  <%= f.password_field :password_confirmation %><br>
-  <%= f.submit "Sign Up" %>
+    <%= label_tag :name %>
+    <%= f.text_field :name %><br>
+    <%= label_tag :email %>
+    <%= f.text_field :email %><br>
+    <%= label_tag :password %>
+    <%= f.password_field :password %><br>
+    <%= label_tag :password_confirmation %>
+    <%= f.password_field :password_confirmation %><br>
+    <%= f.submit "Sign Up" %>
   <% end %>
 </div>

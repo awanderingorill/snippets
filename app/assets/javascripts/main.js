@@ -3,9 +3,30 @@ console.log("Im ready");
 // event listener added to edit button/link that will render an edit view for the snippet
 
 $(document).ready(function(){
+
   var editButton = true;
   var $target;
   var snippet_id;
+
+  $("#new-snippet-button").on("click", function(e){
+    e.preventDefault();
+    console.log('clicked');
+    var newBody = $("#new-body").val();
+    var newSource = $("#new-source").val();
+    var newNotes = $("#new-notes").val();
+    var newTags = $("#new-tags").val();
+    var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
+      $.ajax({
+        type: "POST",
+        url: "/snippets/",
+        data: snippetNew,
+        dataType: "json"
+      }).done(function(response){
+        console.log(response);
+      });
+
+  });
+
   //takes all buttons with class "seemorebuttons" and adds event listener "click"
   $('.see-more-button').on("click", function(){
     //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
@@ -29,20 +50,20 @@ $(document).ready(function(){
         //apends the button to the snippet div
         $(this).closest('.snippet').append($("<button class ='btn btn-secondary edit-snippet-button'>").html("Submit Edits"));
         editButton = false;}
-      else
+        else
         {
-        var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
-        var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
-        $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
-        $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
-        $(".edit-snippet-button").remove();
-        editButton = true;
-      }
+          var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
+          var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
+          $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
+          $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
+          $(".edit-snippet-button").remove();
+          editButton = true;
+        }
 
-  });
+      });
 
-    $(".snippet").on("click", ".edit-snippet-button", function(e){
-      e.preventDefault();
+  $(".snippet").on("click", ".edit-snippet-button", function(e){
+    e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
       $target = $(e.target).closest('.snippet');
       snippet_id = $target.attr('id');
@@ -50,47 +71,31 @@ $(document).ready(function(){
       var editedNotes = $("#notes-"+snippet_id).val();
       var snippetUpdate = {snippet: {notes: editedNotes, body: editedSnippet}}
       $.ajax({
-      type: "PUT",
-      url: "/snippets/"+ snippet_id,
-      data: snippetUpdate,
-      dataType: "json"
+        type: "PUT",
+        url: "/snippets/"+ snippet_id,
+        data: snippetUpdate,
+        dataType: "json"
       }).done(function(response){
         console.log(response);
         $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + response.body + "</p>").attr("id", "body-"+snippet_id));
         $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + response.notes + "</p>").attr("id","notes"+snippet_id));
         $(".edit-snippet-button").remove();
       });
-    });
+  });
 
 
-    $(".delete-button").on("click", function(e){
-      e.preventDefault();
-      var $target = $(e.target).closest('.snippet');
-      var snippet_id = $target.attr('id')
-      $.ajax({
+  $(".delete-button").on("click", function(e){
+    e.preventDefault();
+    var $target = $(e.target).closest('.snippet');
+    var snippet_id = $target.attr('id')
+    $.ajax({
       type: "DELETE",
       url: "/snippets/"+ snippet_id,
       dataType: "json"
-      }).done(function(){
-        $("#"+snippet_id).remove();
-      })
-    });
-
-  // resizeIt = function(input) {
-  //     var str = $(input).value;
-  //     var cols = $(input).cols;
-
-  //     var linecount = 0;
-  //     $A(str.split("\n")).each( function(l) {
-  //       linecount += Math.ceil( l.length / cols ); // take into account long lines
-  //     } )
-  //     $(input).rows = linecount + 1;
-  //   };
-
-  // function resizeTextArea (input) {
-  //   input.height(input.scrollHeight);
-  // }
-
+    }).done(function(){
+      $("#"+snippet_id).remove();
+    })
+  });
 
 
 });
