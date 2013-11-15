@@ -71,6 +71,9 @@
         <div class="snippet-source">
           <%= link_to snippet.source %>
         </div>
+        <div class="snippet-favicon">
+         <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>>
+        </div>
       </div>
 
 
@@ -96,9 +99,12 @@
             <div class="snippet-tags">
               <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
             </div>
+            <div class="snippet-favicon">
+             <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>>
+            </div>
           </div>
           <div class="modal-footer">
-            <div class="button-div" align="right">
+           <div class="button-div" align="right">
               <i class="fa fa-pencil-square-o edit-button"></i>
               <i class="fa fa-trash-o delete-button"></i>
             </div>
