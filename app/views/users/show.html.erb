@@ -59,12 +59,12 @@
 
     <div class="col-md-10">
       <div id="snippets-container">
-        <% @snippets.each do |snippet| %>
+        <% @snippets.reverse.each do |snippet| %>
 
         <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
-         <div class="snippet-source" align="right">
-          <h3 style="font-size: .8em; color: #A2A2A2;"><%= snippet.created_at.strftime("%I:%M%p ON %m/%d/%Y") %></h3>
+         <div class="snippet-source">
           <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
+          <h3 style="font-size: .8em; color: #A2A2A2; font-family: 'proxima_novalight'; letter-spacing: .08em;"><%= snippet.created_at.strftime("%I:%M%p ON %m/%d/%Y") %></h3>
         </div>
         <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
         <div class="snippet-tags" align="right">
