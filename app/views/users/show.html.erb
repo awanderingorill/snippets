@@ -19,59 +19,57 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h2 class="modal-title" id="myModalLabel">Add a Snippet</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <label>Snippet</label>
-            <input type="text" id="new-body" name="body"><br>
-            <label>Source</label>
-            <input type="text" id="new-source" name="source"><br>
-            <label>Notes</label>
-            <input type="text" id="new-notes" name="notes"><br>
-            <label>Tags</label>
-            <input type="text" id="new-tags" name="tag_list"><br>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="new-snippet-button">Submit</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+          </div>
+          <div class="modal-body">
+            <form>
+              <label>Snippet</label>
+              <input type="text" id="new-body" name="body"><br>
+              <label>Source</label>
+              <input type="text" id="new-source" name="source"><br>
+              <label>Notes</label>
+              <input type="text" id="new-notes" name="notes"><br>
+              <label>Tags</label>
+              <input type="text" id="new-tags" name="tag_list"><br>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="new-snippet-button">Submit</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 
-</div>
-
-<div class="row content">
-  <div class="col-md-2">
-    <ul>
-      <!-- all this logic should be in the model -->
-      <% tag_array = [] %>
-      <% @user.snippets.each do |snippet| %>
-      <% snippet.tags.each do |tag| %>
-      <% tag_array << tag.name %>
-      <% end %>
-      <% end %>
-      <% tag_array.uniq! %>
-      <% tag_array.each do |tag| %>
-      <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
-      <% end %>
-    </ul>
   </div>
 
-  <div class="col-md-10">
-    <div id="snippets-container">
-      <% @snippets.each do |snippet| %>
+  <div class="row content">
+    <div class="col-md-2">
+      <ul>
+        <!-- all this logic should be in the model -->
+        <% tag_array = [] %>
+        <% @user.snippets.each do |snippet| %>
+        <% snippet.tags.each do |tag| %>
+        <% tag_array << tag.name %>
+        <% end %>
+        <% end %>
+        <% tag_array.uniq! %>
+        <% tag_array.each do |tag| %>
+        <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
+        <% end %>
+      </ul>
+    </div>
 
-      <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
-        <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
-        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+    <div class="col-md-10">
+      <div id="snippets-container">
+        <% @snippets.each do |snippet| %>
 
-        <div class="snippet-source">
+        <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
+         <div class="snippet-source">
           <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
         </div>
+        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
 
         <div class="snippet-tags">
           <h3 align="right"><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
