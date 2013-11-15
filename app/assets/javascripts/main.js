@@ -95,7 +95,7 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
 
   $(".delete-button").on("click", function(e){
     e.preventDefault();
-    $target = $(e.target).closest('.snippet');
+    $target = $(e.target).closest('.snippet-modal');
     snippet_id = $target.attr('id')
     $.ajax({
       type: "DELETE",
@@ -103,6 +103,8 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       dataType: "json"
     }).done(function(){
       $("#"+snippet_id).remove();
+      $("#snippetModal-"+ snippet_id).modal('hide');
+      $("#snippet-div-" + snippet_id).remove();
     })
   });
 

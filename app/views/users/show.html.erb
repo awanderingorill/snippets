@@ -50,13 +50,13 @@
       <!-- all this logic should be in the model -->
       <% tag_array = [] %>
       <% @user.snippets.each do |snippet| %>
-        <% snippet.tags.each do |tag| %>
-          <% tag_array << tag.name %>
-        <% end %>
+      <% snippet.tags.each do |tag| %>
+      <% tag_array << tag.name %>
+      <% end %>
       <% end %>
       <% tag_array.uniq! %>
       <% tag_array.each do |tag| %>
-        <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
+      <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
       <% end %>
     </ul>
   </div>
@@ -65,7 +65,7 @@
     <div id="snippets-container">
       <% @snippets.each do |snippet| %>
 
-      <div class="snippet" id="<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
+      <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
         <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
         <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
         <div class="snippet-source">
@@ -81,26 +81,28 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title" id="myModalLabel"><h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3></h4>
             </div>
-            <div class="modal-body">
-             <h3>Snippet:</h3>
-             <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
-             <h3>Source:</h3>
-             <div class="snippet-source">
-              <%= link_to snippet.source %>
+            <div class="snippet-modal" id="<%=snippet.id%>">
+              <div class="modal-body">
+               <h3>Snippet:</h3>
+               <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+               <h3>Source:</h3>
+               <div class="snippet-source">
+                <%= link_to snippet.source %>
+              </div>
+              <h3>Notes:</h3>
+              <div class = "snippet-notes-text" id = "notes-<%=snippet.id%>">
+                <%= snippet.notes %>
+              </div>
+              <h3>Tags:</h3>
+              <div class="snippet-tags">
+                <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
+              </div>
             </div>
-            <h3>Notes:</h3>
-            <div class = "snippet-notes-text" id = "notes-<%=snippet.id%>">
-              <%= snippet.notes %>
-            </div>
-            <h3>Tags:</h3>
-            <div class="snippet-tags">
-              <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="button-div" align="right">
-              <i class="fa fa-pencil-square-o edit-button"></i>
-              <i class="fa fa-trash-o delete-button"></i>
+            <div class="modal-footer">
+              <div class="button-div" align="right">
+                <i class="fa fa-pencil-square-o edit-button"></i>
+                <i class="fa fa-trash-o delete-button"></i>
+              </div>
             </div>
           </div>
         </div><!-- /.modal-content -->
