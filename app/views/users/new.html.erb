@@ -12,7 +12,7 @@
 
   <%= form_for @user do |f| %>
     <%= f.text_field :email, :placeholder => 'email', class: 'form-control' %><br>
-    <%= f.password_field :password, :placeholder => 'email', class: 'form-control' %><br>
+    <%= f.password_field :password, :placeholder => 'password', class: 'form-control' %><br>
     <%= f.password_field :password_confirmation, :placeholder => 'password confirmation', class: 'form-control' %><br>
     <%= f.submit "Join", class: 'btn btn-default' %>
   <% end %>

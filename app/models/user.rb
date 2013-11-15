@@ -14,7 +14,7 @@
 class User < ActiveRecord::Base
   #validation
   before_save do
-    self.name = self.name.downcase
+    self.email = self.email.downcase
   end
   #validation
   attr_accessible :name, :email, :password, :password_confirmation, :country
