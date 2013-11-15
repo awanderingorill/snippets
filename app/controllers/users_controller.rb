@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html{redirect_to @user, notice: 'Snippet is successfully created'}
+        format.html{redirect_to @user, notice: 'Welcome to Snippets!'}
         format.json{render json:@user, status: :created}
       else
         #TODO flash error if password isn't longer than 6 characters

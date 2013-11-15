@@ -8,15 +8,13 @@
 
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
 </head>
 <body>
   <div class="wrapper">
     <div class="row">
 
       <div class="col-md-6">
-        <section class="brand-name"><%= link_to 'snippets', '/snippets/new' %></section>
+        <section class="brand-name"><%= link_to 'index', "/users/#{session[:user_id]}" %></section>
       </div>
 
       <div class="col-md-6">
@@ -30,9 +28,9 @@
         </nav>
       </div>
     </div>
-    <div class="row">
+
       <%= yield %>
-    </div>
+
   </div>
 
 </body>

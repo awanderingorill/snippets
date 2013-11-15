@@ -23,6 +23,7 @@
 
 body {
   font-family: 'Montserrat';
+  background-color: #F1F1F1;
 }
 
 textarea {
@@ -81,10 +82,17 @@ h2 {
   font-size: .9em;
 }
 
+h3 {
+  font-family: 'Montserrat';
+  font-size: 1em;
+  margin: 0;
+  padding-bottom: 3%;
+}
+
 ul {
   list-style-type: none;
   padding: 0px;
-  margin: 0px;
+  margin: 2%;
 }
 
 a {
@@ -93,7 +101,7 @@ a {
 
 a:hover{
   text-decoration: none;
-  color: #aa6546;
+  color: #003fff;
 }
 
 .snippet-links {
@@ -104,12 +112,26 @@ a:hover{
   display: none;
 }
 
+.snippet:hover{
+  color: #003fff;
+  cursor: pointer;
+  border-bottom: 1px solid #003fff;
+}
+
+.snippet:hover a{
+  color: #003fff;
+  pointer-events: none;
+}
+
 .snippet {
-  font-family: 'Buenard';
+  border-bottom: 1px solid #332118;
+  background-color: #FFFFFF;
+  width: 250px;
+  overflow: hidden;
+  font-family: 'proxima_novalight';
+  font-size: 1em;
   padding: 2%;
-  font-size: 16pt;
-  padding: 0%;
-  margin-top: 20px;
+  margin: 10px 20px 10px 0;
 }
 
 .tags {
