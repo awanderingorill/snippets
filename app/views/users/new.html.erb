@@ -1,14 +1,9 @@
-<div class="col-md-12">
+<div class="col-md-6" style="padding: 0;">
   <h2>Sign Up</h2>
   <%= form_for @user do |f| %>
-    <%= label_tag :name %>
-    <%= f.text_field :name %><br>
-    <%= label_tag :email %>
-    <%= f.text_field :email %><br>
-    <%= label_tag :password %>
-    <%= f.password_field :password %><br>
-    <%= label_tag :password_confirmation %>
-    <%= f.password_field :password_confirmation %><br>
-    <%= f.submit "Sign Up" %>
+    <%= f.text_field :email, :placeholder => 'email', class: 'form-control' %><br>
+    <%= f.password_field :password, :placeholder => 'email', class: 'form-control' %><br>
+    <%= f.password_field :password_confirmation, :placeholder => 'password confirmation', class: 'form-control' %><br>
+    <%= f.submit "Join", class: 'btn btn-default' %>
   <% end %>
 </div>

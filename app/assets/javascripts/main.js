@@ -16,21 +16,18 @@ $(document).ready(function(){
     var newNotes = $("#new-notes").val();
     var newTags = $("#new-tags").val();
     var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
-    debugger
     $.ajax({
       type: "POST",
       url: "/snippets/",
       data: snippetNew,
       dataType: "json"
     }).done(function(response) {
-      debugger
-     $('#myModal').modal('hide');
-     // location.reload();
+      $('#myModal').modal('hide');
+      location.reload();
        //isotope addItem to page
        // call an isotope thing that updates the page
       // where the response appends to the body of the site.
     });
-
   });
 
   //takes all buttons with class "seemorebuttons" and adds event listener "click"
@@ -97,27 +94,20 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       });
     });
 
-// on .snippet click
-//   $('.snippet').on("click", function(e){
-//     e.preventDefault();
-//     console.log($(e.target));
-// // if the target of the click event is an anchor tag,
-// // get its href attribute and navigate to that location.
-//   })
 
-  $(".delete-button").on("click", function(e){
-    e.preventDefault();
-    $target = $(e.target).closest('.snippet-modal');
-    snippet_id = $target.attr('id')
-    $.ajax({
-      type: "DELETE",
-      url: "/snippets/"+ snippet_id,
-      dataType: "json"
-    }).done(function(){
-      $("#"+snippet_id).remove();
-      $("#snippetModal-"+ snippet_id).modal('hide');
-      $("#snippet-div-" + snippet_id).remove();
-    })
-  });
+$(".delete-button").on("click", function(e){
+  e.preventDefault();
+  $target = $(e.target).closest('.snippet-modal');
+  snippet_id = $target.attr('id')
+  $.ajax({
+    type: "DELETE",
+    url: "/snippets/"+ snippet_id,
+    dataType: "json"
+  }).done(function(){
+    $("#"+snippet_id).remove();
+    $("#snippetModal-"+ snippet_id).modal('hide');
+    $("#snippet-div-" + snippet_id).remove();
+  })
+});
 
 });

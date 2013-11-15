@@ -18,18 +18,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h2 class="modal-title" id="myModalLabel">Add a Snippet</h4>
+          <h4 class="modal-title" id="myModalLabel">Add a Snippet</h4>
           </div>
           <div class="modal-body">
-            <form>
-              <label>Snippet</label>
-              <input type="text" id="new-body" name="body"><br>
-              <label>Source</label>
-              <input type="text" id="new-source" name="source"><br>
-              <label>Notes</label>
-              <input type="text" id="new-notes" name="notes"><br>
-              <label>Tags</label>
-              <input type="text" id="new-tags" name="tag_list"><br>
+            <form class="form-horizontal">
+              <textarea id="new-body" name="body" class="form-control" placeholder="Snippet body." rows="4"></textarea><br>
+              <input type="text" id="new-source" name="source" class="form-control" placeholder="Source"><br>
+              <input type="text" id="new-notes" name="notes" class="form-control" placeholder="Notes"><br>
+              <input type="text" id="new-tags" name="tag_list" class="form-control" placeholder="Comma-separated tags."><br>
             </form>
           </div>
           <div class="modal-footer">

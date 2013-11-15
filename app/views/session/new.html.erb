@@ -1,11 +1,12 @@
-<div class="col-md-12">
+<div class="col-md-6" style="padding: 0">
+
   <h2>Log in</h2>
 
-  <%= form_tag('/login') do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %><br>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %><br>
-  <%= submit_tag "Log in" %>
-  <% end %>
+  <div>
+    <%= form_tag('/login') do %>
+    <%= text_field_tag :email, nil, :placeholder => 'email', class: 'form-control' %><br>
+    <%= password_field_tag :password, nil, :placeholder => 'password', class: 'form-control' %><br>
+    <%= submit_tag "Log in", class: "btn btn-default" %>
+    <% end %>
+  </div>
 </div>
