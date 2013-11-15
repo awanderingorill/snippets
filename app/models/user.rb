@@ -12,6 +12,11 @@
 #
 
 class User < ActiveRecord::Base
+  #validation
+  before_save do
+    self.name = self.name.downcase
+  end
+  #validation
   attr_accessible :name, :email, :password, :password_confirmation, :country
   #no devise library yet.
   has_secure_password

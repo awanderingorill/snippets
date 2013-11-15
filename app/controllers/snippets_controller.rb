@@ -34,10 +34,16 @@ class SnippetsController < ApplicationController
 
     respond_to do |format|
       if @snippet.save
-        format.html{redirect_to @user, notice: 'Snippet is successfully created'}
+        format.html do
+          redirect_to @user
+          flash[:notice] ='Snippet is successfully created'
+        end
         format.json{render json:@snippet, status: :created}
       else
-        format.html{render action:"new"}
+        format.html do
+          render action:"new"
+          flash[:error] = "Could not save your snippet"
+        end
         format.json{render json: @snippet.errors, status: :unprocessable_entity}
       end
     end
