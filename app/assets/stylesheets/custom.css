@@ -1,3 +1,17 @@
+.modal-title{
+  font-family: 'Buenard';
+  font-size: 2em;
+}
+
+.modal-body{
+  font-family: 'Buenard';
+  font-size: 1.5em;
+}
+
+.snippet-notes-text{
+  font-size: .9em;
+}
+
 .isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
