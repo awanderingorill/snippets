@@ -4,7 +4,7 @@ class SessionController < ApplicationController
   end
 
   def create
-    email = params[:email]
+    email = params[:email].downcase
     password = params[:password]
     user = User.where(email: email).first
     if user && user.authenticate(password)
@@ -17,8 +17,15 @@ class SessionController < ApplicationController
       end
     else
       #TODO raise an error if something goes wrong in the authentication process
-      format.html{render action:"new"}
-      format.json{render json: @session.errors, status: :unprocessable_entity}
+      #VALIDATION FIXED
+      respond_to do |format|
+        format.html do
+          flash[:error] = "Email and password do not match"
+          render :new
+        end
+        format.json{render json: @session.errors, status: :unprocessable_entity}
+      end
+      #TODO validation fixed but json looks funky. need to test!
     end
   end
 

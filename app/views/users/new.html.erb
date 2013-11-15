@@ -1,5 +1,15 @@
 <div class="col-md-6" style="padding: 0;">
   <h2>Sign Up</h2>
+  <!-- validation -->
+  <div id="error">
+    <%=flash[:error]%>
+  </div>
+
+  <div id="notice">
+    <%=flash[:notice]%>
+  </div>
+  <!-- validation -->
+
   <%= form_for @user do |f| %>
     <%= f.text_field :email, :placeholder => 'email', class: 'form-control' %><br>
     <%= f.password_field :password, :placeholder => 'email', class: 'form-control' %><br>

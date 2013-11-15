@@ -28,8 +28,12 @@ class UsersController < ApplicationController
         format.html{redirect_to @user, notice: 'Welcome to Snippets!'}
         format.json{render json:@user, status: :created}
       else
-        #TODO flash error if password isn't longer than 6 characters
-        format.html{render action:"new"}
+        #validation not the best but done
+        format.html do
+          flash[:error] = "We could not create your account. Please try again."
+          render :new
+        end
+        #validation
         format.json{render json: @user.errors, status: :unprocessable_entity}
       end
     end
