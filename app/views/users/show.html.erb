@@ -66,13 +66,12 @@
       <% @snippets.each do |snippet| %>
 
       <div class="snippet" id="<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
-        <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
-        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
         <div class="snippet-source">
-          <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source %>
+          <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
         </div>
+        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
         <div class="snippet-tags">
-          <h3>tags: <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
+          <h3 align="right"><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
         </div>
       </div>
 
