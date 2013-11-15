@@ -27,8 +27,6 @@ class SnippetsController < ApplicationController
 
   def create
     @snippet = Snippet.new(params["snippet"])
-    @snippet.user_id = session[:user_id]
-    @user = User.find(session[:user_id])
     if session[:user_id]
       @snippet.user_id = session[:user_id]
       @user = User.find(session[:user_id])

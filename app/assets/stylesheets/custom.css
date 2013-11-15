@@ -101,7 +101,7 @@ a {
 
 a:hover{
   text-decoration: none;
-  color: #aa6546;
+  color: #003fff;
 }
 
 .snippet-links {
@@ -113,13 +113,13 @@ a:hover{
 }
 
 .snippet:hover{
-  color: #aa6546;
+  color: #003fff;
   cursor: pointer;
-  border-bottom: 1px solid #aa6546;
+  border-bottom: 1px solid #003fff;
 }
 
 .snippet:hover a{
-  color: #aa6546;
+  color: #003fff;
   pointer-events: none;
 }
 

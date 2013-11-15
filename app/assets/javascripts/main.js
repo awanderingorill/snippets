@@ -16,18 +16,16 @@ $(document).ready(function(){
     var newNotes = $("#new-notes").val();
     var newTags = $("#new-tags").val();
     var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
-      $.ajax({
-        type: "POST",
-        url: "/snippets/",
-        data: snippetNew,
-        dataType: "json"
-      }).done(function(response){
-        console.log(response);
-// where the response appends to the body of the site.
-
-
-
-      });
+    $.ajax({
+      type: "POST",
+      url: "/snippets/",
+      data: snippetNew,
+      dataType: "json"
+    }).done(function(response) {
+       $('#myModal').modal('hide');
+       // call an isotope thing that updates the page
+      // where the response appends to the body of the site.
+    });
 
   });
 
@@ -94,20 +92,20 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
         $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + response.notes + "</p>").attr("id","notes"+snippet_id));
         $(".edit-snippet-button").remove();
       });
-  });
+    });
 
 
-  $(".delete-button").on("click", function(e){
-    e.preventDefault();
-    var $target = $(e.target).closest('.snippet');
-    var snippet_id = $target.attr('id')
-    $.ajax({
-      type: "DELETE",
-      url: "/snippets/"+ snippet_id,
-      dataType: "json"
-    }).done(function(){
-      $("#"+snippet_id).remove();
-    })
-  });
+$(".delete-button").on("click", function(e){
+  e.preventDefault();
+  var $target = $(e.target).closest('.snippet');
+  var snippet_id = $target.attr('id')
+  $.ajax({
+    type: "DELETE",
+    url: "/snippets/"+ snippet_id,
+    dataType: "json"
+  }).done(function(){
+    $("#"+snippet_id).remove();
+  })
+});
 
 });
