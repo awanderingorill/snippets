@@ -74,7 +74,6 @@ $('#snippets-container').isotope({
     rowHeight: 360
   }});
 
-
 $(".snippet").on("click", ".edit-snippet-button", function(e){
   e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
@@ -96,7 +95,6 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       });
   });
 
-
   $(".delete-button").on("click", function(e){
     e.preventDefault();
     var $target = $(e.target).closest('.snippet');
@@ -109,5 +107,6 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       $("#"+snippet_id).remove();
     })
   });
+
 
 });
