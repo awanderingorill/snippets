@@ -22,7 +22,9 @@ $(document).ready(function(){
       data: snippetNew,
       dataType: "json"
     }).done(function(response) {
-       $('#myModal').modal('hide');
+     $('#myModal').modal('hide');
+     location.reload();
+       //isotope addItem to page
        // call an isotope thing that updates the page
       // where the response appends to the body of the site.
     });
@@ -72,7 +74,6 @@ $('#snippets-container').isotope({
     rowHeight: 360
   }});
 
-
 $(".snippet").on("click", ".edit-snippet-button", function(e){
   e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
@@ -94,7 +95,6 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       });
     });
 
-
 $(".delete-button").on("click", function(e){
   e.preventDefault();
   var $target = $(e.target).closest('.snippet');
@@ -107,5 +107,13 @@ $(".delete-button").on("click", function(e){
     $("#"+snippet_id).remove();
   })
 });
+
+// on .snippet click
+//   $('.snippet').on("click", function(e){
+//     e.preventDefault();
+//     console.log($(e.target));
+// // if the target of the click event is an anchor tag,
+// // get its href attribute and navigate to that location.
+//   })
 
 });
