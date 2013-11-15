@@ -47,10 +47,15 @@
 <div class="row content">
   <div class="col-md-2">
     <ul>
+      <% tag_array = [] %>
       <% @user.snippets.each do |snippet| %>
-      <% snippet.tags.each do |tag| %>
-      <li><%= link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" %></li>
+        <% snippet.tags.each do |tag| %>
+          <% tag_array << tag.name %>
+        <% end %>
       <% end %>
+      <% tag_array.uniq! %>
+      <% tag_array.each do |tag| %>
+        <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
       <% end %>
     </ul>
   </div>
