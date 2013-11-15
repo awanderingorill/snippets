@@ -1,4 +1,4 @@
-<div class="row labels">
+<div class="row labels" style="padding-bottom: 1%;">
 
   <div class="col-md-2">
     <h2>tags</h2>
@@ -47,6 +47,7 @@
 <div class="row content">
   <div class="col-md-2">
     <ul>
+      <!-- all this logic should be in the model -->
       <% tag_array = [] %>
       <% @user.snippets.each do |snippet| %>
         <% snippet.tags.each do |tag| %>
