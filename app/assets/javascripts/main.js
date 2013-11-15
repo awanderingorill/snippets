@@ -95,8 +95,8 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
 
   $(".delete-button").on("click", function(e){
     e.preventDefault();
-    var $target = $(e.target).closest('.snippet');
-    var snippet_id = $target.attr('id')
+    $target = $(e.target).closest('.snippet');
+    snippet_id = $target.attr('id')
     $.ajax({
       type: "DELETE",
       url: "/snippets/"+ snippet_id,
