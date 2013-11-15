@@ -113,14 +113,12 @@ a:hover{
 }
 
 .snippet:hover{
-  color: #003fff;
+  background-color: #b28787;
   cursor: pointer;
-  border-bottom: 1px solid #003fff;
 }
 
-.snippet:hover a{
+.snippet a:hover{
   color: #003fff;
-  pointer-events: none;
 }
 
 .snippet {

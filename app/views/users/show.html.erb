@@ -71,7 +71,7 @@
           <%= link_to snippet.source %>
         </div>
         <div class="snippet-tags">
-          <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
+          <h3><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
         </div>
         <div class="snippet-notes">
           <h3>Notes:</h3>
