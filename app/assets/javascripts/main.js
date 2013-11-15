@@ -94,6 +94,15 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       });
     });
 
+$('.snippet').on("click", function(e){
+  e.preventDefault();
+  var isAnchor = $(e.target).is("a");
+  if (isAnchor){
+    var href = $(e.target).prop('href');
+    window.location = href;
+  }
+});
+
 
 $(".delete-button").on("click", function(e){
   e.preventDefault();
