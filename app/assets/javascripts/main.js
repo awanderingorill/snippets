@@ -95,19 +95,6 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
       });
     });
 
-$(".delete-button").on("click", function(e){
-  e.preventDefault();
-  var $target = $(e.target).closest('.snippet');
-  var snippet_id = $target.attr('id')
-  $.ajax({
-    type: "DELETE",
-    url: "/snippets/"+ snippet_id,
-    dataType: "json"
-  }).done(function(){
-    $("#"+snippet_id).remove();
-  })
-});
-
 // on .snippet click
 //   $('.snippet').on("click", function(e){
 //     e.preventDefault();
@@ -115,5 +102,18 @@ $(".delete-button").on("click", function(e){
 // // if the target of the click event is an anchor tag,
 // // get its href attribute and navigate to that location.
 //   })
+
+  $(".delete-button").on("click", function(e){
+    e.preventDefault();
+    $target = $(e.target).closest('.snippet');
+    snippet_id = $target.attr('id')
+    $.ajax({
+      type: "DELETE",
+      url: "/snippets/"+ snippet_id,
+      dataType: "json"
+    }).done(function(){
+      $("#"+snippet_id).remove();
+    })
+  });
 
 });

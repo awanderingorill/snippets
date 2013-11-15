@@ -10,7 +10,7 @@
 
   <div class="col-md-5" align="right">
     <!-- Button trigger modal -->
-    <a href="/snippets/new"><i class="fa fa-plus-square-o" data-toggle="modal" data-target="#myModal" style="font-size: 14pt; color: #A2A2A2  "></i></a>
+    <a href="/snippets/new"><i class="fa fa-plus-square-o" data-toggle="modal" data-target="#myModal" style="font-size: 14pt; color: #A2A2A2    "></i></a>
   </div>
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -50,13 +50,13 @@
       <!-- all this logic should be in the model -->
       <% tag_array = [] %>
       <% @user.snippets.each do |snippet| %>
-        <% snippet.tags.each do |tag| %>
-          <% tag_array << tag.name %>
-        <% end %>
+      <% snippet.tags.each do |tag| %>
+      <% tag_array << tag.name %>
+      <% end %>
       <% end %>
       <% tag_array.uniq! %>
       <% tag_array.each do |tag| %>
-        <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
+      <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
       <% end %>
     </ul>
   </div>
@@ -66,9 +66,10 @@
       <% @snippets.each do |snippet| %>
 
       <div class="snippet" id="<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
+        <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
         <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
         <div class="snippet-source">
-          <%= link_to snippet.source %>
+          <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source %>
         </div>
         <div class="snippet-tags">
           <h3>tags: <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
@@ -84,34 +85,36 @@
               <h4 class="modal-title" id="myModalLabel"><h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3></h4>
             </div>
             <div class="modal-body">
-             <h3>Snippet:</h3>
-             <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
-             <h3>Source:</h3>
-             <div class="snippet-source">
-              <%= link_to snippet.source %>
+              <h3>Snippet:</h3>
+              <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+              <h3>Source:</h3>
+              <div class="snippet-source">
+                <%= link_to snippet.source %>
+              </div>
+              <h3>Notes:</h3>
+              <div class = "snippet-notes-text" id = "notes-<%=snippet.id%>">
+                <%= snippet.notes %>
+              </div>
+              <h3>Tags:</h3>
+              <div class="snippet-tags">
+                <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
+              </div>
+              <div class="snippet-favicon">
+                <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>>
+              </div>
             </div>
-            <h3>Notes:</h3>
-            <div class = "snippet-notes-text" id = "notes-<%=snippet.id%>">
-              <%= snippet.notes %>
+            <div class="modal-footer">
+              <div class="button-div" align="right">
+                <i class="fa fa-pencil-square-o edit-button"></i>
+                <i class="fa fa-trash-o delete-button"></i>
+              </div>
             </div>
-            <h3>Tags:</h3>
-            <div class="snippet-tags">
-              <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="button-div" align="right">
-              <i class="fa fa-pencil-square-o edit-button"></i>
-              <i class="fa fa-trash-o delete-button"></i>
-              <i class="fa fa-ellipsis-h see-more-button" id="button-<%=snippet.id%>"></i>
-            </div>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <% end %>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <% end %>
+    </div>
   </div>
-</div>
 
 </div>
 
