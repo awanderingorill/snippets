@@ -65,16 +65,18 @@
     <div id="snippets-container">
       <% @snippets.each do |snippet| %>
 
-      <div class="snippet" id="<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
+      <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
+        <h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3>
+        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+
         <div class="snippet-source">
           <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
         </div>
-        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+
         <div class="snippet-tags">
           <h3 align="right"><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
         </div>
       </div>
-
 
       <div class="modal fade" id="snippetModal-<%=snippet.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -83,9 +85,13 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title" id="myModalLabel"><h3><%= snippet.created_at.strftime("%d %b. %Y") %></h3></h4>
             </div>
-            <div class="modal-body">
-              <h3>Snippet:</h3>
-              <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+            <div class="snippet-modal" id="<%=snippet.id%>">
+              <div class="modal-body">
+               <h3>Snippet:</h3>
+               <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+               <div class="snippet-favicon">
+                <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>>
+              </div>
               <h3>Source:</h3>
               <div class="snippet-source">
                 <%= link_to snippet.source %>
@@ -98,9 +104,6 @@
               <div class="snippet-tags">
                 <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
               </div>
-              <div class="snippet-favicon">
-                <img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>>
-              </div>
             </div>
             <div class="modal-footer">
               <div class="button-div" align="right">
@@ -111,8 +114,8 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
-      <% end %>
     </div>
+    <% end %>
   </div>
 
 </div>
