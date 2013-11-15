@@ -16,13 +16,17 @@ $(document).ready(function(){
     var newNotes = $("#new-notes").val();
     var newTags = $("#new-tags").val();
     var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
+    debugger
     $.ajax({
       type: "POST",
       url: "/snippets/",
       data: snippetNew,
       dataType: "json"
     }).done(function(response) {
-       $('#myModal').modal('hide');
+      debugger
+     $('#myModal').modal('hide');
+     // location.reload();
+       //isotope addItem to page
        // call an isotope thing that updates the page
       // where the response appends to the body of the site.
     });
@@ -92,6 +96,14 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
         $(".edit-snippet-button").remove();
       });
     });
+
+// on .snippet click
+//   $('.snippet').on("click", function(e){
+//     e.preventDefault();
+//     console.log($(e.target));
+// // if the target of the click event is an anchor tag,
+// // get its href attribute and navigate to that location.
+//   })
 
   $(".delete-button").on("click", function(e){
     e.preventDefault();

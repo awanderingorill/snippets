@@ -1,3 +1,13 @@
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
 @font-face {
   font-family: 'museo_slab500';
   src: url('museo_slab_500-webfont.eot');
@@ -101,7 +111,7 @@ a {
 
 a:hover{
   text-decoration: none;
-  color: #003fff;
+  color: #af2f2f;
 }
 
 .snippet-links {
@@ -113,14 +123,8 @@ a:hover{
 }
 
 .snippet:hover{
-  color: #003fff;
+  background-color: #fffddb;
   cursor: pointer;
-  border-bottom: 1px solid #003fff;
-}
-
-.snippet:hover a{
-  color: #003fff;
-  pointer-events: none;
 }
 
 .snippet {
