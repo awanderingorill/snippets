@@ -8,6 +8,7 @@ $(document).ready(function(){
   var $target;
   var snippet_id;
 
+  //adds new snippet from modal view. Linked to button in the modal window
   $("#new-snippet-button").on("click", function(e){
     e.preventDefault();
     console.log('clicked');
@@ -30,12 +31,7 @@ $(document).ready(function(){
     });
   });
 
-  //takes all buttons with class "seemorebuttons" and adds event listener "click"
-  $('.see-more-button').on("click", function(){
-    //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
-    $(this).closest('.snippet').find('.snippet-notes').slideToggle('fast');
-  });
-
+  //converts the snippet, notes, and tag of the snippets into text area, allowing for edits
   $(".edit-button").on("click", function(e){
       //establishes target on the event listener to the closest element with class of snippet
       if (editButton)
@@ -53,28 +49,28 @@ $(document).ready(function(){
         //apends the button to the snippet div
         $(this).closest('.snippet').append($("<button class ='btn btn-secondary edit-snippet-button'>").html("Submit Edits"));
         editButton = false;}
-        else
+      else
         {
-          var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
-          var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
-          $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
-          $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
-          $(".edit-snippet-button").remove();
-          editButton = true;
+        var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
+        var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
+        $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
+        $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
+        $(".edit-snippet-button").remove();
+        editButton = true;
         }
 
       });
 
-$('#snippets-container').isotope({
-  itemSelector: '.snippet',
-  masonry: {
-    gutterWidth: 10,
-    columnWidth: 270,
-    rowHeight: 360
+  $('#snippets-container').isotope({
+    itemSelector: '.snippet',
+    masonry: {
+      gutterWidth: 10,
+      columnWidth: 270,
+      rowHeight: 360
   }});
 
-$(".snippet").on("click", ".edit-snippet-button", function(e){
-  e.preventDefault();
+  $(".snippet").on("click", ".edit-snippet-button", function(e){
+    e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
       $target = $(e.target).closest('.snippet');
       snippet_id = $target.attr('id');
@@ -92,31 +88,31 @@ $(".snippet").on("click", ".edit-snippet-button", function(e){
         $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + response.notes + "</p>").attr("id","notes"+snippet_id));
         $(".edit-snippet-button").remove();
       });
-    });
+  });
 
-$('.snippet').on("click", function(e){
-  e.preventDefault();
-  var isAnchor = $(e.target).is("a");
-  if (isAnchor){
-    var href = $(e.target).prop('href');
-    window.location = href;
-  }
-});
+  $('.snippet').on("click", function(e){
+    e.preventDefault();
+    var isAnchor = $(e.target).is("a");
+    if (isAnchor){
+      var href = $(e.target).prop('href');
+      window.location = href;
+    }
+  });
 
-
-$(".delete-button").on("click", function(e){
-  e.preventDefault();
-  $target = $(e.target).closest('.snippet-modal');
-  snippet_id = $target.attr('id')
-  $.ajax({
-    type: "DELETE",
-    url: "/snippets/"+ snippet_id,
-    dataType: "json"
-  }).done(function(){
-    $("#"+snippet_id).remove();
-    $("#snippetModal-"+ snippet_id).modal('hide');
-    $("#snippet-div-" + snippet_id).remove();
-  })
-});
+  //delete button from modal view that deletes the snippet from the db and removes the snippet object from the DOM
+  $(".delete-button").on("click", function(e){
+    e.preventDefault();
+    $target = $(e.target).closest('.snippet-modal');
+    snippet_id = $target.attr('id')
+    $.ajax({
+      type: "DELETE",
+      url: "/snippets/"+ snippet_id,
+      dataType: "json"
+    }).done(function(){
+      $("#"+snippet_id).remove();
+      $("#snippetModal-"+ snippet_id).modal('hide');
+      $("#snippet-div-" + snippet_id).remove();
+    })
+  });
 
 });
