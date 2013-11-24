@@ -6,6 +6,7 @@
 
   <div class="col-md-5">
     <h2>snippets</h2>
+
   </div>
 
   <div class="col-md-5" align="right">
@@ -63,7 +64,8 @@
 
         <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
          <div class="snippet-source">
-          <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
+          <% parsed_source = URI.parse(snippet.source).host %>
+          <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to parsed_source, snippet.source %></h3>
           <h3 style="font-size: .8em; color: #A2A2A2; font-family: 'proxima_novalight'; letter-spacing: .08em;"><%= snippet.created_at.strftime("%I:%M%p ON %m/%d/%Y") %></h3>
         </div>
         <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
