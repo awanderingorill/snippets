@@ -13,32 +13,8 @@
     <a href="/snippets/new"><i class="fa fa-plus-square-o" data-toggle="modal" data-target="#myModal" style="font-size: 20pt;"></i></a>
   </div>
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Add a Snippet</h4>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal">
-              <textarea id="new-body" name="body" class="form-control" placeholder="Snippet body." rows="4"></textarea><br>
-              <input type="text" id="new-source" name="source" class="form-control" placeholder="Source"><br>
-              <input type="text" id="new-notes" name="notes" class="form-control" placeholder="Notes"><br>
-              <input type="text" id="new-tags" name="tag_list" class="form-control" placeholder="Comma-separated tags."><br>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="new-snippet-button">Submit</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
-
-
-  </div>
+  <%= render partial: "shared/new_snippet" %>
 
   <div class="row content">
     <div class="col-md-2">
@@ -46,13 +22,13 @@
         <!-- all this logic should be in the model -->
         <% tag_array = [] %>
         <% @user.snippets.each do |snippet| %>
-        <% snippet.tags.each do |tag| %>
-        <% tag_array << tag.name %>
-        <% end %>
+          <% snippet.tags.each do |tag| %>
+            <% tag_array << tag.name %>
+          <% end %>
         <% end %>
         <% tag_array.uniq! %>
         <% tag_array.each do |tag| %>
-        <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
+          <li><%= link_to tag, "/users/#{@user.id}/tags/#{tag}" %></li>
         <% end %>
       </ul>
     </div>
@@ -83,8 +59,8 @@
               <div class="modal-body">
                <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
                <br>
-              <h2>Notes:</h2>
-              <div class="snippet-notes-text" id="notes-<%=snippet.id%>">
+               <h2>Notes:</h2>
+               <div class="snippet-notes-text" id="notes-<%=snippet.id%>">
                 <%= snippet.notes %>
               </div>
               <div class="snippet-tags" align="right">
