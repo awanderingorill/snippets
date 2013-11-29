@@ -1,4 +1,4 @@
-console.log("Im ready");
+console.log("I'm ready");
 
 // event listener added to edit button/link that will render an edit view for the snippet
 
