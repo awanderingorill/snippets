@@ -8,34 +8,16 @@ $(document).ready(function(){
   var $target;
   var snippet_id;
 
-  $("#new-snippet-button").on("click", function(e){
-    e.preventDefault();
-    console.log('clicked');
-    var newBody = $("#new-body").val();
-    var newSource = $("#new-source").val();
-    var newNotes = $("#new-notes").val();
-    var newTags = $("#new-tags").val();
-    var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
-    $.ajax({
-      type: "POST",
-      url: "/snippets/",
-      data: snippetNew,
-      dataType: "json"
-    }).done(function(response) {
-      $('#myModal').modal('hide');
-      location.reload();
-       //isotope addItem to page
-       // call an isotope thing that updates the page
-      // where the response appends to the body of the site.
-    });
-  });
+  $('#snippets-container').isotope({
+  itemSelector: '.snippet',
+  masonry: {
+    gutterWidth: 10,
+    columnWidth: 270,
+    rowHeight: 360
+  }});
 
-  //takes all buttons with class "seemorebuttons" and adds event listener "click"
-  $('.see-more-button').on("click", function(){
-    //takes "this" and finds closest parent with class "snippet" which then finds child with class "snippet-notes" and adds slide toggle
-    $(this).closest('.snippet').find('.snippet-notes').slideToggle('fast');
-  });
 
+  //converts the snippet, notes, and tag of the snippets into text area, allowing for edits
   $(".edit-button").on("click", function(e){
       //establishes target on the event listener to the closest element with class of snippet
       if (editButton)
@@ -64,14 +46,6 @@ $(document).ready(function(){
         }
 
       });
-
-$('#snippets-container').isotope({
-  itemSelector: '.snippet',
-  masonry: {
-    gutterWidth: 10,
-    columnWidth: 270,
-    rowHeight: 360
-  }});
 
 $(".snippet").on("click", ".edit-snippet-button", function(e){
   e.preventDefault();
@@ -103,9 +77,14 @@ $('.snippet').on("click", function(e){
   }
 });
 
+//Event Listeners
+  $(".delete-button").on("click", deleteSnippet);
+  $("#new-snippet-button").on("click", addSnippet);
 
-$(".delete-button").on("click", function(e){
-  e.preventDefault();
+}); //------ends the document onload----------
+
+
+function deleteSnippet(e) {
   $target = $(e.target).closest('.snippet-modal');
   snippet_id = $target.attr('id')
   $.ajax({
@@ -117,6 +96,31 @@ $(".delete-button").on("click", function(e){
     $("#snippetModal-"+ snippet_id).modal('hide');
     $("#snippet-div-" + snippet_id).remove();
   })
-});
+}; //------ends delete event function------
 
-});
+function addSnippet(e){
+  e.preventDefault();
+  var newBody = $("#new-body").val();
+  var newSource = $("#new-source").val();
+  var newNotes = $("#new-notes").val();
+  var newTags = $("#new-tags").val();
+  var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
+  $.ajax({
+    type: "POST",
+    url: "/snippets/",
+    data: snippetNew,
+    dataType: "json"
+  }).done(function(response) {
+    $('#myModal').modal('hide');
+    location.reload();
+       //isotope addItem to page
+       // call an isotope thing that updates the page
+      // where the response appends to the body of the site.
+    });
+};//--------end of add snippet function-------
+
+
+
+
+
+
