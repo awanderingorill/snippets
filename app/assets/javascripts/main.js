@@ -8,28 +8,14 @@ $(document).ready(function(){
   var $target;
   var snippet_id;
 
-  //adds new snippet from modal view. Linked to button in the modal window
-  $("#new-snippet-button").on("click", function(e){
-    e.preventDefault();
-    console.log('clicked');
-    var newBody = $("#new-body").val();
-    var newSource = $("#new-source").val();
-    var newNotes = $("#new-notes").val();
-    var newTags = $("#new-tags").val();
-    var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
-    $.ajax({
-      type: "POST",
-      url: "/snippets/",
-      data: snippetNew,
-      dataType: "json"
-    }).done(function(response) {
-      $('#myModal').modal('hide');
-      location.reload();
-       //isotope addItem to page
-       // call an isotope thing that updates the page
-      // where the response appends to the body of the site.
-    });
-  });
+  $('#snippets-container').isotope({
+  itemSelector: '.snippet',
+  masonry: {
+    gutterWidth: 10,
+    columnWidth: 270,
+    rowHeight: 360
+  }});
+
 
   //converts the snippet, notes, and tag of the snippets into text area, allowing for edits
   $(".edit-button").on("click", function(e){
@@ -61,14 +47,6 @@ $(document).ready(function(){
 
       });
 
-$('#snippets-container').isotope({
-  itemSelector: '.snippet',
-  masonry: {
-    gutterWidth: 10,
-    columnWidth: 270,
-    rowHeight: 360
-  }});
-
 $(".snippet").on("click", ".edit-snippet-button", function(e){
   e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
@@ -99,14 +77,14 @@ $('.snippet').on("click", function(e){
   }
 });
 
-  //delete button from modal view that deletes the snippet from the db and removes the snippet object from the DOM
+//Event Listeners
   $(".delete-button").on("click", deleteSnippet);
+  $("#new-snippet-button").on("click", addSnippet);
 
 }); //------ends the document onload----------
 
 
 function deleteSnippet(e) {
-  e.preventDefault();
   $target = $(e.target).closest('.snippet-modal');
   snippet_id = $target.attr('id')
   $.ajax({
@@ -120,6 +98,26 @@ function deleteSnippet(e) {
   })
 }; //------ends delete event function------
 
+function addSnippet(e){
+  e.preventDefault();
+  var newBody = $("#new-body").val();
+  var newSource = $("#new-source").val();
+  var newNotes = $("#new-notes").val();
+  var newTags = $("#new-tags").val();
+  var snippetNew = {snippet: {notes: newNotes, body: newBody, source: newSource, tag_list: newTags}};
+  $.ajax({
+    type: "POST",
+    url: "/snippets/",
+    data: snippetNew,
+    dataType: "json"
+  }).done(function(response) {
+    $('#myModal').modal('hide');
+    location.reload();
+       //isotope addItem to page
+       // call an isotope thing that updates the page
+      // where the response appends to the body of the site.
+    });
+};//--------end of add snippet function-------
 
 
 
