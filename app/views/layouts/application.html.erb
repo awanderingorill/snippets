@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>index</title>
+  <title>wallace</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -14,7 +14,7 @@
     <div class="row" style="padding-bottom: 1%;">
 
       <div class="col-md-6">
-        <section class="brand-name"><%= link_to 'index', "/users/#{session[:user_id]}" %></section>
+        <section class="brand-name"><%= link_to 'wallace', "/users/#{session[:user_id]}" %></section>
       </div>
 
       <div class="col-md-6">
@@ -23,7 +23,7 @@
           <% @user = User.find(session[:user_id]) %>
           logged in as <%= link_to(@user.email, "/users/#{@user.id}")  %> | <%= link_to('Log out', '/logout') %>
           <% else %>
-          <%= link_to('Join Index', '/users/new') %> | <%= link_to('Log In', '/login') %>
+          <%= link_to('Join Wallace', '/users/new') %> | <%= link_to('Log In', '/login') %>
           <% end %>
         </nav>
       </div>
