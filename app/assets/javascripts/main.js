@@ -49,28 +49,28 @@ $(document).ready(function(){
         //apends the button to the snippet div
         $(this).closest('.snippet').append($("<button class ='btn btn-secondary edit-snippet-button'>").html("Submit Edits"));
         editButton = false;}
-      else
+        else
         {
-        var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
-        var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
-        $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
-        $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
-        $(".edit-snippet-button").remove();
-        editButton = true;
+          var $snippetBody = $(this).closest('.snippet').find('#body-'+ snippet_id);
+          var $snippetNotes = $(this).closest('.snippet').find('#notes-' + snippet_id);
+          $("#body-"+snippet_id).replaceWith($("<p class = 'snippet-body'>" + $snippetBody.html() + "</p>").attr("id", "body-"+snippet_id));
+          $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + $snippetNotes.html() + "</p>").attr("id","notes"+snippet_id));
+          $(".edit-snippet-button").remove();
+          editButton = true;
         }
 
       });
 
-  $('#snippets-container').isotope({
-    itemSelector: '.snippet',
-    masonry: {
-      gutterWidth: 10,
-      columnWidth: 270,
-      rowHeight: 360
+$('#snippets-container').isotope({
+  itemSelector: '.snippet',
+  masonry: {
+    gutterWidth: 10,
+    columnWidth: 270,
+    rowHeight: 360
   }});
 
-  $(".snippet").on("click", ".edit-snippet-button", function(e){
-    e.preventDefault();
+$(".snippet").on("click", ".edit-snippet-button", function(e){
+  e.preventDefault();
       //establishes target on the event listener to the closest element with class of snippet
       $target = $(e.target).closest('.snippet');
       snippet_id = $target.attr('id');
@@ -88,31 +88,41 @@ $(document).ready(function(){
         $("#notes-"+snippet_id).replaceWith($("<p class = 'snippet-notes-text'>" + response.notes + "</p>").attr("id","notes"+snippet_id));
         $(".edit-snippet-button").remove();
       });
-  });
+    });
 
-  $('.snippet').on("click", function(e){
-    e.preventDefault();
-    var isAnchor = $(e.target).is("a");
-    if (isAnchor){
-      var href = $(e.target).prop('href');
-      window.location = href;
-    }
-  });
+$('.snippet').on("click", function(e){
+  e.preventDefault();
+  var isAnchor = $(e.target).is("a");
+  if (isAnchor){
+    var href = $(e.target).prop('href');
+    window.location = href;
+  }
+});
 
   //delete button from modal view that deletes the snippet from the db and removes the snippet object from the DOM
-  $(".delete-button").on("click", function(e){
-    e.preventDefault();
-    $target = $(e.target).closest('.snippet-modal');
-    snippet_id = $target.attr('id')
-    $.ajax({
-      type: "DELETE",
-      url: "/snippets/"+ snippet_id,
-      dataType: "json"
-    }).done(function(){
-      $("#"+snippet_id).remove();
-      $("#snippetModal-"+ snippet_id).modal('hide');
-      $("#snippet-div-" + snippet_id).remove();
-    })
-  });
+  $(".delete-button").on("click", deleteSnippet);
 
-});
+}); //------ends the document onload----------
+
+
+function deleteSnippet(e) {
+  e.preventDefault();
+  $target = $(e.target).closest('.snippet-modal');
+  snippet_id = $target.attr('id')
+  $.ajax({
+    type: "DELETE",
+    url: "/snippets/"+ snippet_id,
+    dataType: "json"
+  }).done(function(){
+    $("#"+snippet_id).remove();
+    $("#snippetModal-"+ snippet_id).modal('hide');
+    $("#snippet-div-" + snippet_id).remove();
+  })
+}; //------ends delete event function------
+
+
+
+
+
+
+
