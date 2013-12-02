@@ -1,1 +1,25 @@
-"Hello"
+<div class="modal fade" id="snippetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="snippet-modal" id="snippet-modal">
+        <div class="modal-body">
+          <h2>Snippet:</h2>
+          <p id="modal-snippet-body"></p>
+          <br>
+          <h2>Notes:</h2>
+          <p id="modal-snippet-notes"></p>
+          <div id="modal-snippet-tags" align="right"></div>
+        </div>
+        <div class="modal-footer">
+          <div class="button-div" align="right">
+            <i class="fa fa-pencil-square-o edit-button"></i>
+            <i class="fa fa-trash-o delete-button"></i>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!--/.modalfade-->
