@@ -5,14 +5,14 @@ $(document).ready(function(){
     masonry: { gutterWidth: 10, columnWidth: 270, rowHeight: 360 }
   });
 
-  $('.snippet').on("click", function(e){
-    e.preventDefault();
-    var isAnchor = $(e.target).is("a");
-    if (isAnchor){
-      var href = $(e.target).prop('href');
-      window.location = href;
-    }
-  });
+  // $('.snippet').on("click", function(e){
+  //   e.preventDefault();
+  //   var isAnchor = $(e.target).is("a");
+  //   if (isAnchor){
+  //     var href = $(e.target).prop('href');
+  //     window.location = href;
+  //   }
+  // });
 
   //Event Listeners
   $(".snippet").on("click", appendInfo);
@@ -65,7 +65,7 @@ function editSnippet(e){
     $snippetNotes = $("#modal-snippet-notes");
     $snippetBody.replaceWith($('<textarea>' + $snippetBody.html() + '</textarea>').attr("id", "modal-snippet-body"));
     $snippetNotes.replaceWith($('<textarea>' + $snippetNotes.html() + '</textarea>').attr("id", "modal-snippet-notes"));
-    $('#modal-content').append($("<button class ='btn btn-secondary' id='edit-snippet-button'>").html("Submit Edit"));
+    $('#snippet-modal').append($("<button class ='btn btn-secondary' id='edit-snippet-button'>").html("Submit Edit"));
     editButton = false;
     $("#edit-snippet-button").on("click", updateSnippet);
   }else{
@@ -102,10 +102,6 @@ function appendInfo(e){
   snippet_id = $snippet[0]['id']
   $('#modal-snippet-body').html($('#body-'+snippet_id).html());
   $('#modal-snippet-notes').html($('#notes-'+snippet_id).html());
-  $('#snippet-tags').html($('#tags-'+snippet_id));
+  $('#modal-snippet-tags').html($('#tags-'+snippet_id).html());
 }//------ end of append info function ------
-
-
-
-
 

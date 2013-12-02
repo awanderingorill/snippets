@@ -41,15 +41,14 @@
               <h3 style="font-size: .8em; color: #A2A2A2; font-family: 'proxima_novalight'; letter-spacing: .08em;"><%= snippet.created_at.strftime("%I:%M%p ON %m/%d/%Y") %></h3>
             </div>
             <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
-            <div class="snippet-tags" align="right">
-              <h3 id="tags-<%=snippet.id%>"><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
+            <div class="snippet-tags" id="tags-<%=snippet.id%>" align="right">
+              <h3><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
             </div>
             <p hidden id="notes-<%=snippet.id%>"><%= snippet.notes %></p>
           </div>
 
         <% end %>
-      </div>
         <%= render partial: "shared/show" %>
+      </div>
     </div>
   </div>
-</div>
