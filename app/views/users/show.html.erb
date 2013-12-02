@@ -12,7 +12,6 @@
     <!-- Button trigger modal -->
     <a href="/snippets/new"><i class="fa fa-plus-square-o" data-toggle="modal" data-target="#myModal" style="font-size: 20pt;"></i></a>
   </div>
-  <!-- Modal -->
 
   <%= render partial: "shared/new_snippet" %>
 
@@ -36,50 +35,21 @@
     <div class="col-md-10">
       <div id="snippets-container">
         <% @snippets.reverse.each do |snippet| %>
+          <div class="snippet" id="<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal">
+            <div class="snippet-source">
+              <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
+              <h3 style="font-size: .8em; color: #A2A2A2; font-family: 'proxima_novalight'; letter-spacing: .08em;"><%= snippet.created_at.strftime("%I:%M%p ON %m/%d/%Y") %></h3>
+            </div>
+            <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+            <div class="snippet-tags" align="right">
+              <h3 id="tags-<%=snippet.id%>"><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
+            </div>
+            <p hidden id="notes-<%=snippet.id%>"><%= snippet.notes %></p>
+          </div>
 
-        <div class="snippet" id="snippet-div-<%=snippet.id%>" data-toggle="modal" data-target="#snippetModal-<%=snippet.id%>">
-         <div class="snippet-source">
-          <h3><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h3>
-          <h3 style="font-size: .8em; color: #A2A2A2; font-family: 'proxima_novalight'; letter-spacing: .08em;"><%= snippet.created_at.strftime("%I:%M%p ON %m/%d/%Y") %></h3>
-        </div>
-        <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
-        <div class="snippet-tags" align="right">
-          <h3><%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %></h3>
-        </div>
+        <% end %>
       </div>
-
-      <div class="modal fade" id="snippetModal-<%=snippet.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel"><img src=<%= "http://www.google.com/s2/favicons?domain=" +snippet.source %>> <%= link_to snippet.source.split('/')[2], snippet.source %></h4>
-            </div>
-            <div class="snippet-modal" id="<%=snippet.id%>">
-              <div class="modal-body">
-               <p class="snippet-body" id="modal-body-<%=snippet.id%>"><%= snippet.body %></p>
-               <br>
-               <h2>Notes:</h2>
-               <div class="snippet-notes-text" id="notes-<%=snippet.id%>">
-                <%= snippet.notes %>
-              </div>
-              <div class="snippet-tags" id="tag-<%=snippet.id%>" align="right">
-                <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <div class="button-div" align="right">
-                <i class="fa fa-pencil-square-o edit-button"></i>
-                <i class="fa fa-trash-o delete-button"></i>
-              </div>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+        <%= render partial: "shared/show" %>
     </div>
-    <% end %>
   </div>
-
-</div>
-
 </div>

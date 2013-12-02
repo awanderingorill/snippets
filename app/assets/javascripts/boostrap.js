@@ -98,7 +98,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   Alert.prototype.close = function (e) {
     var $this    = $(this)
     var selector = $this.attr('data-target')
-
+    debugger;
     if (!selector) {
       selector = $this.attr('href')
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
