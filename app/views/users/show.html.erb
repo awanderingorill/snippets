@@ -59,13 +59,13 @@
             </div>
             <div class="snippet-modal" id="<%=snippet.id%>">
               <div class="modal-body">
-               <p class="snippet-body" id="body-<%=snippet.id%>"><%= snippet.body %></p>
+               <p class="snippet-body" id="modal-body-<%=snippet.id%>"><%= snippet.body %></p>
                <br>
                <h2>Notes:</h2>
                <div class="snippet-notes-text" id="notes-<%=snippet.id%>">
                 <%= snippet.notes %>
               </div>
-              <div class="snippet-tags" align="right">
+              <div class="snippet-tags" id="tag-<%=snippet.id%>" align="right">
                 <%= raw snippet.tags.map { |tag| link_to tag.name, "/users/#{@user.id}/tags/#{tag.name}" }.join(', ') %>
               </div>
             </div>
