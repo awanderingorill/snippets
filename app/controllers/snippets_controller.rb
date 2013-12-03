@@ -1,4 +1,5 @@
 class SnippetsController < ApplicationController
+  before_filter :correct_user, only: [:show, :edit, :update, :delete]
 
   def index
     if params[:tag]
@@ -74,4 +75,12 @@ class SnippetsController < ApplicationController
       format.json {render json: @snippet}
     end
   end
+
+  private
+
+  def correct_user
+    snippet = Snippet.find(params[:id])
+    redirect_to login_path, notice: "You cannot view this snippet because you're not the correct owner. Please login to the correct account." unless snippet.user == current_user
+  end
+
 end

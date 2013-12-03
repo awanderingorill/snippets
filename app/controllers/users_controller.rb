@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:show, :edit, :update, :delete]
+  before_filter :correct_user, only: [:show, :edit, :update, :delete]
+
   def index
     @user = User.all
   end
@@ -52,7 +55,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    #TODO enable a user to delete their profile
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to root_url
+  end
+
+  private
+  def correct_user
+    user = User.find(params[:id])
+    redirect_to '/login', notice: "You are not the current owner of this account. Please login to the correct account." unless current_user == user
+  end
+
+  def signed_in_user
+    redirect_to "/login", notice: "Please login to view." unless signed_in?
   end
 
 end
